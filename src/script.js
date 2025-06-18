@@ -762,10 +762,10 @@ addImagesToCategory('nature', [
 
 // Add portrait images
 addImagesToCategory('portrait', [
-    'p1.jpg',
-    'p2.jpg',
-    'p3.jpg',
-    'p4.jpg'
+    'P1.jpg',
+    'P2.jpg',
+    'P3.jpg',
+    'P4.jpg'
 ]);
 
 // Add wedding images
