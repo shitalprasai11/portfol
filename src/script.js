@@ -8,28 +8,13 @@ let isFormSubmitting = false;
 
 // Image file lists for each category - UPDATE THESE WITH YOUR ACTUAL FILENAMES
 const imageFiles = {
-    portrait: [
-        
-        // Add your portrait image filenames here
-        // Example: 'portrait_001.jpg', 'portrait_002.jpg', etc.
-    ],
-    wedding: [
-        // Add your wedding image filenames here
-        // Example: 'wedding_001.jpg', 'wedding_002.jpg', etc.
-    ],
-    commercial: [
-        // Add your commercial image filenames here
-        // Example: 'commercial_001.jpg', 'commercial_002.jpg', etc.
-    ],
-    nature: [
-        // Add your nature image filenames here
-        // Example: 'nature_001.jpg', 'nature_002.jpg', etc.
-    ],
-    concert: [
-        // Add your concert image filenames here
-        // Example: 'concert_001.jpg', 'concert_002.jpg', etc.
-    ]
+    commercial: ["A.jpg", "B.jpg", "C.jpg"],
+    concert: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg"],
+    nature: ["N1.jpg", "N2.jpg", "N3.jpg"],
+    portrait: ["P1.jpg", "P2.jpg", "P3.jpg", "P4.jpg"],
+    wedding: ["W1.jpg", "W2.jpg", "W3.jpg", "W4.jpg"]
 };
+
 
 // Enhanced metadata for gallery images (optional - you can customize these)
 const imageMetadata = {
@@ -740,41 +725,6 @@ function init() {
     }
 }
 
-// Add commercial images
-addImagesToCategory('commercial', [
-    'A.jpg',
-    'B.jpg',
-    'C.jpg'
-]);
-
-// Add concert images
-addImagesToCategory('concert', [
-    '1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg',
-    '6.jpg', '7.jpg', '8.jpg', '9.jpg'
-]);
-
-// Add nature images
-addImagesToCategory('nature', [
-    'N1.jpg',
-    'N2.jpg',
-    'N3.jpg'
-]);
-
-// Add portrait images
-addImagesToCategory('portrait', [
-    'P1.jpg',
-    'P2.jpg',
-    'P3.jpg',
-    'P4.jpg'
-]);
-
-// Add wedding images
-addImagesToCategory('wedding', [
-    'W1.jpg',
-    'W2.jpg',
-    'W3.jpg',
-    'W4.jpg'
-]);
 
 // Start the application
 init();
