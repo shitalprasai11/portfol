@@ -2,9 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Ankho Photography - Professional Photographer</title>
     <meta name="description" content="Professional photography services specializing in portraits, weddings, and commercial photography">
+    <meta name="theme-color" content="#c9a96e">
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    <link rel="preload" href="src/style.css" as="style">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,97 +22,118 @@
     <!-- CSS -->
     <link rel="stylesheet" href="src/style.css">
 </head>
-<body>
+<body data-theme="light">
     <!-- Loading Animation -->
-    <div class="loader" id="loader">
+    <div class="loader" id="loader" aria-hidden="true">
         <div class="loader-content">
             <div class="camera-icon">
-                <i class="fas fa-camera"></i>
+                <i class="fas fa-camera" aria-hidden="true"></i>
             </div>
-            <div class="loader-text">Ankho Photography</div>
+            <div class="loader-text typing-effect">Ankho Photography</div>
         </div>
     </div>
 
     <!-- Header -->
-    <header class="header" id="header">
-        <nav class="nav container">
+    <header class="header" id="header" role="banner">
+        <nav class="nav container" role="navigation" aria-label="Main navigation">
             <div class="nav-brand">
-                <h2>Ankho </h2>
-                <span>Photography</span>
+                <h2 class="animate-slide-in">Ankho</h2>
+                <span class="animate-slide-in-delay">Photography</span>
+            </div>
+
+            <div class="nav-controls">
+                <!-- Dark Mode Toggle -->
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+                    <i class="fas fa-moon" aria-hidden="true"></i>
+                    <i class="fas fa-sun" aria-hidden="true"></i>
+                </button>
+
+                <div class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" role="button" tabindex="0">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
 
             <div class="nav-menu" id="nav-menu">
-                <ul class="nav-list">
-                    <li class="nav-item">
-                        <a href="#home" class="nav-link active">Home</a>
+                <ul class="nav-list" role="menu">
+                    <li class="nav-item" role="none">
+                        <a href="#home" class="nav-link active" role="menuitem">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="#about" class="nav-link">About</a>
+                    <li class="nav-item" role="none">
+                        <a href="#about" class="nav-link" role="menuitem">About</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="#services" class="nav-link">Services</a>
+                    <li class="nav-item" role="none">
+                        <a href="#services" class="nav-link" role="menuitem">Services</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="#gallery" class="nav-link">Gallery</a>
+                    <li class="nav-item" role="none">
+                        <a href="#gallery" class="nav-link" role="menuitem">Gallery</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="#testimonials" class="nav-link">Testimonials</a>
+                    <li class="nav-item" role="none">
+                        <a href="#testimonials" class="nav-link" role="menuitem">Testimonials</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="#contact" class="nav-link">Contact</a>
+                    <li class="nav-item" role="none">
+                        <a href="#contact" class="nav-link" role="menuitem">Contact</a>
                     </li>
                 </ul>
-            </div>
-
-            <div class="nav-toggle" id="nav-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
             </div>
         </nav>
     </header>
 
     <!-- Main Content -->
-    <main>
+    <main role="main">
         <!-- Hero Section -->
-        <section class="hero" id="home">
+        <section class="hero" id="home" role="banner">
             <div class="hero-bg">
-                <img src="https://images.unsplash.com/photo-1554048612-b6a482b22f23?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" alt="Professional Photographer" class="hero-image">
+                <img src="https://images.unsplash.com/photo-1554048612-b6a482b22f23?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80"
+                     alt="Professional photographer capturing moments"
+                     class="hero-image"
+                     loading="eager">
                 <div class="hero-overlay"></div>
             </div>
 
             <div class="hero-content container">
                 <div class="hero-text">
-                    <span class="hero-subtitle animate-fade-up">Professional Photographer</span>
-                    <h1 class="hero-title animate-fade-up">Creating Stunning <br><span class="gradient-text">Visual Stories</span></h1>
-                    <p class="hero-description animate-fade-up">Capturing life's most precious moments with artistic vision and professional excellence</p>
+                    <span class="hero-subtitle animate-fade-up" data-delay="0.1s">Professional Photographer</span>
+                    <h1 class="hero-title" data-delay="0.2s">
+                        <span class="typing-text" data-text="Creating Stunning">Creating Stunning</span>
+                        <br>
+                        <span class="gradient-text typing-text-delay" data-text="Visual Stories" data-delay="0.5s">Visual Stories</span>
+                    </h1>
+                    <p class="hero-description animate-fade-up" data-delay="0.8s">Capturing life's most precious moments with artistic vision and professional excellence</p>
 
-                    <div class="hero-buttons animate-fade-up">
-                        <a href="#gallery" class="btn btn-primary">View My Work</a>
-                        <a href="#contact" class="btn btn-secondary">Book Session</a>
+                    <div class="hero-buttons animate-fade-up" data-delay="1s">
+                        <a href="#gallery" class="btn btn-primary">
+                            <span>View My Work</span>
+                            <i class="fas fa-camera" aria-hidden="true"></i>
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <span>Book Session</span>
+                            <i class="fas fa-calendar" aria-hidden="true"></i>
+                        </a>
                     </div>
                 </div>
 
-                <div class="hero-stats animate-fade-up">
+                <div class="hero-stats animate-fade-up" data-delay="1.2s">
                     <div class="stat-item">
-                        <div class="stat-number" data-count="500">0</div>
+                        <div class="stat-number animate-counter" data-count="500">0</div>
                         <div class="stat-label">Happy Clients</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number" data-count="8">0</div>
+                        <div class="stat-number animate-counter" data-count="8">0</div>
                         <div class="stat-label">Years Experience</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number" data-count="150">0</div>
+                        <div class="stat-number animate-counter" data-count="150">0</div>
                         <div class="stat-label">Events Captured</div>
                     </div>
                 </div>
             </div>
 
-            <div class="scroll-indicator">
+            <div class="scroll-indicator animate-bounce" aria-label="Scroll to explore">
                 <span>Explore</span>
                 <div class="scroll-arrow">
-                    <i class="fas fa-chevron-down"></i>
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
                 </div>
             </div>
         </section>
@@ -116,38 +142,44 @@
         <section class="about section" id="about">
             <div class="container">
                 <div class="about-content">
-                    <div class="about-text">
-                        <span class="section-subtitle">8+ Years Experience</span>
-                        <h2 class="section-title">About Me</h2>
-                        <p class="section-description">Passionate photographer with a keen eye for detail</p>
+                    <div class="about-text reveal-section">
+                        <span class="section-subtitle animate-slide-right">8+ Years Experience</span>
+                        <h2 class="section-title animate-slide-right" data-delay="0.1s">About Me</h2>
+                        <p class="section-description animate-slide-right" data-delay="0.2s">Passionate photographer with a keen eye for detail</p>
 
-                        <div class="about-story">
+                        <div class="about-story animate-slide-right" data-delay="0.3s">
                             <p>With over 8 years of experience in professional photography, I specialize in capturing authentic moments that tell compelling stories. My work spans across portrait, wedding, and commercial photography, always focusing on creating images that resonate with emotion and artistry.</p>
 
                             <p>I believe that every photograph should tell a story, and I'm dedicated to working closely with my clients to ensure their vision comes to life through my lens.</p>
                         </div>
 
-                        <div class="about-stats">
-                            <div class="about-stat">
-                                <div class="stat-number">500+</div>
+                        <div class="about-stats reveal-section" data-delay="0.4s">
+                            <div class="about-stat animate-scale-up">
+                                <div class="stat-number animate-counter" data-count="500">0+</div>
                                 <div class="stat-text">Happy Clients</div>
                             </div>
-                            <div class="about-stat">
-                                <div class="stat-number">1200+</div>
+                            <div class="about-stat animate-scale-up" data-delay="0.1s">
+                                <div class="stat-number animate-counter" data-count="1200">0+</div>
                                 <div class="stat-text">Photos Taken</div>
                             </div>
-                            <div class="about-stat">
-                                <div class="stat-number">150+</div>
+                            <div class="about-stat animate-scale-up" data-delay="0.2s">
+                                <div class="stat-number animate-counter" data-count="150">0+</div>
                                 <div class="stat-text">Events Covered</div>
                             </div>
                         </div>
 
-                        <a href="#contact" class="btn btn-primary">Let's Work Together</a>
+                        <a href="#contact" class="btn btn-primary animate-slide-right" data-delay="0.5s">
+                            <span>Let's Work Together</span>
+                            <i class="fas fa-handshake" aria-hidden="true"></i>
+                        </a>
                     </div>
 
-                    <div class="about-image">
-                        <div class="image-wrapper">
-                            <img src="src/508387584_18466633672077081_3643676971789401956_n.jpg" alt="Ankho Photography - Photographer" class="about-img">
+                    <div class="about-image reveal-section" data-delay="0.2s">
+                        <div class="image-wrapper animate-scale-up">
+                            <img src="src/508387584_18466633672077081_3643676971789401956_n.jpg"
+                                 alt="Ankho Photography - Professional photographer portrait"
+                                 class="about-img"
+                                 loading="lazy">
                             <div class="image-decoration"></div>
                         </div>
                     </div>
@@ -158,99 +190,109 @@
         <!-- Services Section -->
         <section class="services section" id="services">
             <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">My Services</h2>
-                    <p class="section-description">Professional photography services tailored to your needs</p>
+                <div class="section-header reveal-section">
+                    <span class="section-subtitle animate-fade-up">What I Offer</span>
+                    <h2 class="section-title animate-fade-up" data-delay="0.1s">My Services</h2>
+                    <p class="section-description animate-fade-up" data-delay="0.2s">Professional photography services tailored to your needs</p>
                 </div>
 
                 <div class="services-grid">
-                    <div class="service-card">
+                    <div class="service-card reveal-section animate-slide-up" data-delay="0.1s">
                         <div class="service-icon">
-                            <i class="fas fa-user"></i>
+                            <i class="fas fa-user" aria-hidden="true"></i>
                         </div>
                         <h3 class="service-title">Portrait Photography</h3>
                         <p class="service-description">Professional headshots and personal portraits that capture your personality and essence</p>
 
                         <ul class="service-features">
-                            <li><i class="fas fa-check"></i> Professional lighting setup</li>
-                            <li><i class="fas fa-check"></i> Multiple outfit changes</li>
-                            <li><i class="fas fa-check"></i> Edited high-resolution images</li>
-                            <li><i class="fas fa-check"></i> Online gallery</li>
+                            <li><i class="fas fa-check" aria-hidden="true"></i> Professional lighting setup</li>
+                            <li><i class="fas fa-check" aria-hidden="true"></i> Multiple outfit changes</li>
+                            <li><i class="fas fa-check" aria-hidden="true"></i> Edited high-resolution images</li>
+                            <li><i class="fas fa-check" aria-hidden="true"></i> Online gallery</li>
                         </ul>
 
                         <div class="service-price">
                             <span class="price">Starting at $299</span>
                         </div>
 
-                        <a href="#contact" class="btn btn-outline">Book Now</a>
+                        <a href="#contact" class="btn btn-outline">
+                            <span>Book Now</span>
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </a>
                     </div>
 
-                    <div class="service-card featured">
+                    <div class="service-card featured reveal-section animate-slide-up" data-delay="0.2s">
                         <div class="service-badge">Most Popular</div>
                         <div class="service-icon">
-                            <i class="fas fa-heart"></i>
+                            <i class="fas fa-heart" aria-hidden="true"></i>
                         </div>
                         <h3 class="service-title">Wedding Photography</h3>
                         <p class="service-description">Complete wedding coverage from preparation to reception, capturing every precious moment</p>
 
                         <ul class="service-features">
-                            <li><i class="fas fa-check"></i> Full day coverage</li>
-                            <li><i class="fas fa-check"></i> Engagement session included</li>
-                            <li><i class="fas fa-check"></i> Online gallery</li>
-                            <li><i class="fas fa-check"></i> Print release</li>
-                            <li><i class="fas fa-check"></i> Backup photographer option</li>
+                            <li><i class="fas fa-check" aria-hidden="true"></i> Full day coverage</li>
+                            <li><i class="fas fa-check" aria-hidden="true"></i> Engagement session included</li>
+                            <li><i class="fas fa-check" aria-hidden="true"></i> Online gallery</li>
+                            <li><i class="fas fa-check" aria-hidden="true"></i> Print release</li>
+                            <li><i class="fas fa-check" aria-hidden="true"></i> Backup photographer option</li>
                         </ul>
 
                         <div class="service-price">
                             <span class="price">Starting at $1,499</span>
                         </div>
 
-                        <a href="#contact" class="btn btn-primary">Book Now</a>
+                        <a href="#contact" class="btn btn-primary">
+                            <span>Book Now</span>
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </a>
                     </div>
 
-                    <div class="service-card">
+                    <div class="service-card reveal-section animate-slide-up" data-delay="0.3s">
                         <div class="service-icon">
-                            <i class="fas fa-briefcase"></i>
+                            <i class="fas fa-briefcase" aria-hidden="true"></i>
                         </div>
                         <h3 class="service-title">Commercial Photography</h3>
                         <p class="service-description">Professional imagery for businesses, products, and marketing materials</p>
 
                         <ul class="service-features">
-                            <li><i class="fas fa-check"></i> Product photography</li>
-                            <li><i class="fas fa-check"></i> Corporate headshots</li>
-                            <li><i class="fas fa-check"></i> Marketing materials</li>
-                            <li><i class="fas fa-check"></i> Commercial usage rights</li>
+                            <li><i class="fas fa-check" aria-hidden="true"></i> Product photography</li>
+                            <li><i class="fas fa-check" aria-hidden="true"></i> Corporate headshots</li>
+                            <li><i class="fas fa-check" aria-hidden="true"></i> Marketing materials</li>
+                            <li><i class="fas fa-check" aria-hidden="true"></i> Commercial usage rights</li>
                         </ul>
 
                         <div class="service-price">
                             <span class="price">Starting at $499</span>
                         </div>
 
-                        <a href="#contact" class="btn btn-outline">Book Now</a>
+                        <a href="#contact" class="btn btn-outline">
+                            <span>Book Now</span>
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Gallery Section (Enhanced Work Section) -->
+        <!-- Gallery Section -->
         <section class="gallery section" id="gallery">
             <div class="container">
-                <div class="section-header">
-                    <span class="section-subtitle">MY WORK</span>
-                    <h2 class="section-title">Photography Portfolio</h2>
-                    <p class="section-description">Explore my latest projects and creative vision</p>
+                <div class="section-header reveal-section">
+                    <span class="section-subtitle animate-fade-up">MY WORK</span>
+                    <h2 class="section-title animate-fade-up" data-delay="0.1s">Photography Portfolio</h2>
+                    <p class="section-description animate-fade-up" data-delay="0.2s">Explore my latest projects and creative vision</p>
                 </div>
 
-                <div class="gallery-filters">
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="portrait">Portrait</button>
-                    <button class="filter-btn" data-filter="wedding">Wedding</button>
-                    <button class="filter-btn" data-filter="commercial">Commercial</button>
-                    <button class="filter-btn" data-filter="nature">Nature</button>
-                    <button class="filter-btn" data-filter="concert">Concert</button>
+                <div class="gallery-filters reveal-section" data-delay="0.3s" role="tablist" aria-label="Gallery filters">
+                    <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true" aria-controls="gallery-grid">All</button>
+                    <button class="filter-btn" data-filter="portrait" role="tab" aria-selected="false" aria-controls="gallery-grid">Portrait</button>
+                    <button class="filter-btn" data-filter="wedding" role="tab" aria-selected="false" aria-controls="gallery-grid">Wedding</button>
+                    <button class="filter-btn" data-filter="commercial" role="tab" aria-selected="false" aria-controls="gallery-grid">Commercial</button>
+                    <button class="filter-btn" data-filter="nature" role="tab" aria-selected="false" aria-controls="gallery-grid">Nature</button>
+                    <button class="filter-btn" data-filter="concert" role="tab" aria-selected="false" aria-controls="gallery-grid">Concert</button>
                 </div>
 
-                <div class="gallery-grid" id="gallery-grid">
+                <div class="gallery-grid reveal-section" id="gallery-grid" role="tabpanel" aria-label="Photo gallery" data-delay="0.4s">
                     <!-- Gallery items will be dynamically loaded here -->
                 </div>
             </div>
@@ -259,18 +301,19 @@
         <!-- Testimonials Section -->
         <section class="testimonials section" id="testimonials">
             <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Client Testimonials</h2>
-                    <p class="section-description">What my clients say about working with me</p>
+                <div class="section-header reveal-section">
+                    <span class="section-subtitle animate-fade-up">Client Reviews</span>
+                    <h2 class="section-title animate-fade-up" data-delay="0.1s">Client Testimonials</h2>
+                    <p class="section-description animate-fade-up" data-delay="0.2s">What my clients say about working with me</p>
                 </div>
 
-                <div class="testimonials-slider">
+                <div class="testimonials-slider reveal-section" data-delay="0.3s" role="region" aria-label="Client testimonials">
                     <div class="testimonial-card active">
                         <div class="testimonial-content">
-                            <div class="testimonial-quote">
+                            <div class="testimonial-quote" aria-hidden="true">
                                 <i class="fas fa-quote-left"></i>
                             </div>
-                            <p class="testimonial-text">"Alex captured our wedding day perfectly. Every emotion, every detail, every precious moment was beautifully preserved. We couldn't be happier with the results!"</p>
+                            <blockquote class="testimonial-text">"Alex captured our wedding day perfectly. Every emotion, every detail, every precious moment was beautifully preserved. We couldn't be happier with the results!"</blockquote>
                             <div class="testimonial-author">
                                 <div class="author-info">
                                     <h4 class="author-name">Sarah & Michael Johnson</h4>
@@ -282,10 +325,10 @@
 
                     <div class="testimonial-card">
                         <div class="testimonial-content">
-                            <div class="testimonial-quote">
+                            <div class="testimonial-quote" aria-hidden="true">
                                 <i class="fas fa-quote-left"></i>
                             </div>
-                            <p class="testimonial-text">"Professional, creative, and incredibly talented. Alex delivered headshots that exceeded our expectations and helped elevate our company's brand image."</p>
+                            <blockquote class="testimonial-text">"Professional, creative, and incredibly talented. Alex delivered headshots that exceeded our expectations and helped elevate our company's brand image."</blockquote>
                             <div class="testimonial-author">
                                 <div class="author-info">
                                     <h4 class="author-name">David Chen</h4>
@@ -297,10 +340,10 @@
 
                     <div class="testimonial-card">
                         <div class="testimonial-content">
-                            <div class="testimonial-quote">
+                            <div class="testimonial-quote" aria-hidden="true">
                                 <i class="fas fa-quote-left"></i>
                             </div>
-                            <p class="testimonial-text">"Working with Alex was an amazing experience. The portfolio shoot was fun, professional, and the results were absolutely stunning. Highly recommended!"</p>
+                            <blockquote class="testimonial-text">"Working with Alex was an amazing experience. The portfolio shoot was fun, professional, and the results were absolutely stunning. Highly recommended!"</blockquote>
                             <div class="testimonial-author">
                                 <div class="author-info">
                                     <h4 class="author-name">Emma Rodriguez</h4>
@@ -311,14 +354,14 @@
                     </div>
                 </div>
 
-                <div class="testimonial-controls">
-                    <button class="testimonial-btn prev"><i class="fas fa-chevron-left"></i></button>
-                    <div class="testimonial-dots">
-                        <span class="dot active" data-slide="0"></span>
-                        <span class="dot" data-slide="1"></span>
-                        <span class="dot" data-slide="2"></span>
+                <div class="testimonial-controls reveal-section" data-delay="0.4s" role="group" aria-label="Testimonial navigation">
+                    <button class="testimonial-btn prev" aria-label="Previous testimonial"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                    <div class="testimonial-dots" role="tablist" aria-label="Testimonial indicators">
+                        <button class="dot active" data-slide="0" role="tab" aria-selected="true" aria-label="Testimonial 1"></button>
+                        <button class="dot" data-slide="1" role="tab" aria-selected="false" aria-label="Testimonial 2"></button>
+                        <button class="dot" data-slide="2" role="tab" aria-selected="false" aria-label="Testimonial 3"></button>
                     </div>
-                    <button class="testimonial-btn next"><i class="fas fa-chevron-right"></i></button>
+                    <button class="testimonial-btn next" aria-label="Next testimonial"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
                 </div>
             </div>
         </section>
@@ -326,36 +369,37 @@
         <!-- Contact Section -->
         <section class="contact section" id="contact">
             <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Let's Create Something Beautiful</h2>
-                    <p class="section-description">Ready to capture your special moments? Get in touch!</p>
+                <div class="section-header reveal-section">
+                    <span class="section-subtitle animate-fade-up">Get In Touch</span>
+                    <h2 class="section-title animate-fade-up" data-delay="0.1s">Let's Create Something Beautiful</h2>
+                    <p class="section-description animate-fade-up" data-delay="0.2s">Ready to capture your special moments? Get in touch!</p>
                 </div>
 
                 <div class="contact-content">
-                    <div class="contact-info">
-                        <div class="contact-item">
+                    <div class="contact-info reveal-section" data-delay="0.3s">
+                        <div class="contact-item animate-slide-right">
                             <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
+                                <i class="fas fa-phone" aria-hidden="true"></i>
                             </div>
                             <div class="contact-details">
                                 <h4>Phone</h4>
-                                <p>+9779XXXXXXX</p>
+                                <p><a href="tel:+9779XXXXXXX">+9779XXXXXXX</a></p>
                             </div>
                         </div>
 
-                        <div class="contact-item">
+                        <div class="contact-item animate-slide-right" data-delay="0.1s">
                             <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
+                                <i class="fas fa-envelope" aria-hidden="true"></i>
                             </div>
                             <div class="contact-details">
                                 <h4>Email</h4>
-                                
+                                <p><a href="mailto:hello@ankhophotography.com">hello@ankhophotography.com</a></p>
                             </div>
                         </div>
 
-                        <div class="contact-item">
+                        <div class="contact-item animate-slide-right" data-delay="0.2s">
                             <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
+                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                             </div>
                             <div class="contact-details">
                                 <h4>Location</h4>
@@ -363,9 +407,9 @@
                             </div>
                         </div>
 
-                        <div class="contact-item">
+                        <div class="contact-item animate-slide-right" data-delay="0.3s">
                             <div class="contact-icon">
-                                <i class="fas fa-clock"></i>
+                                <i class="fas fa-clock" aria-hidden="true"></i>
                             </div>
                             <div class="contact-details">
                                 <h4>Hours</h4>
@@ -373,31 +417,31 @@
                             </div>
                         </div>
 
-                        <div class="contact-social">
-                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <div class="contact-social animate-slide-right" data-delay="0.4s">
+                            <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                            <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                            <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                            <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
                         </div>
                     </div>
 
-                    <form class="contact-form" id="contact-form">
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" placeholder="Full Name" required>
+                    <form class="contact-form reveal-section" id="contact-form" data-delay="0.4s" novalidate>
+                        <div class="form-group animate-slide-left">
+                            <input type="text" id="name" name="name" placeholder="Full Name" required autocomplete="name">
                             <label for="name">Full Name</label>
                         </div>
 
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="Email Address" required>
+                        <div class="form-group animate-slide-left" data-delay="0.1s">
+                            <input type="email" id="email" name="email" placeholder="Email Address" required autocomplete="email">
                             <label for="email">Email Address</label>
                         </div>
 
-                        <div class="form-group">
-                            <input type="tel" id="phone" name="phone" placeholder="Phone Number">
+                        <div class="form-group animate-slide-left" data-delay="0.2s">
+                            <input type="tel" id="phone" name="phone" placeholder="Phone Number" autocomplete="tel">
                             <label for="phone">Phone Number</label>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group animate-slide-left" data-delay="0.3s">
                             <select id="service" name="service" required>
                                 <option value="">Select Service</option>
                                 <option value="portrait">Portrait Photography</option>
@@ -410,14 +454,14 @@
                             <label for="service">Service Type</label>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group animate-slide-left" data-delay="0.4s">
                             <textarea id="message" name="message" placeholder="Tell me about your project" rows="5" required></textarea>
                             <label for="message">Project Details</label>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary animate-slide-left" data-delay="0.5s">
                             <span>Send Message</span>
-                            <i class="fas fa-paper-plane"></i>
+                            <i class="fas fa-paper-plane" aria-hidden="true"></i>
                         </button>
                     </form>
                 </div>
@@ -426,7 +470,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
@@ -434,18 +478,18 @@
                     <p>Professional Photography</p>
                 </div>
 
-                <div class="footer-links">
+                <nav class="footer-links" aria-label="Footer navigation">
                     <a href="#home">Home</a>
                     <a href="#about">About</a>
                     <a href="#services">Services</a>
                     <a href="#gallery">Gallery</a>
                     <a href="#contact">Contact</a>
-                </div>
+                </nav>
 
                 <div class="footer-social">
-                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                    <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                    <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
                 </div>
             </div>
 
@@ -456,25 +500,33 @@
     </footer>
 
     <!-- Image Modal -->
-    <div class="image-modal" id="image-modal">
+    <div class="image-modal" id="image-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
         <div class="modal-overlay" id="modal-overlay"></div>
         <div class="modal-content">
-            <button class="modal-close" id="modal-close">
-                <i class="fas fa-times"></i>
+            <button class="modal-close" id="modal-close" aria-label="Close image viewer">
+                <i class="fas fa-times" aria-hidden="true"></i>
             </button>
-            <img src="" alt="" id="modal-image">
+            <img src="" alt="" id="modal-image" tabindex="0">
+            <div class="modal-nav">
+                <button class="modal-nav-btn modal-prev" id="modal-prev" aria-label="Previous image">
+                    <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                </button>
+                <button class="modal-nav-btn modal-next" id="modal-next" aria-label="Next image">
+                    <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                </button>
+            </div>
         </div>
     </div>
 
     <!-- Success Message -->
-    <div class="success-message" id="success-message">
+    <div class="success-message" id="success-message" role="alert" aria-live="polite">
         <div class="success-content">
-            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-check-circle" aria-hidden="true"></i>
             <p>Thank you! Your message has been sent successfully.</p>
         </div>
     </div>
 
     <!-- Scripts -->
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="src/script.js"></script>
+    <script src="src/script.js"></script>
 </body>
 </html>
