@@ -778,6 +778,7 @@ class GalleryManager {
             const galleryItem = this.createGalleryItem(image, index);
             elements.galleryGrid.appendChild(galleryItem);
             galleryImages.push(image);
+            preloadGalleryImages(galleryImages);
 
             // Staggered fade-in animation
             setTimeout(() => {
@@ -2197,3 +2198,17 @@ initializeApplication();
 
 // Show developer helpers in console
 setTimeout(showDeveloperHelpers, 1000);
+
+
+// ==========================================================================
+// Preload Gallery Images AFTER DOM Insertion
+// ==========================================================================
+function preloadGalleryImages(images) {
+    if (!Array.isArray(images)) return;
+    images.forEach(img => {
+        if (img && img.src) {
+            const preImg = new Image();
+            preImg.src = img.src;
+        }
+    });
+}
