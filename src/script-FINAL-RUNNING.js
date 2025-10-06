@@ -10,13 +10,38 @@ let lastScrollY = 0;
 let ticking = false;
 let touchStartY = 0;
 
-// Enhanced Image Configuration with Lazy Loading Support
+// Enhanced Image Configuration with sample images
 const imageFiles = {
-    commercial: ["A.jpg", "B.jpg", "C.jpg"],
-    concert: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg"],
-    nature: ["N1.jpg", "N2.jpg", "N3.jpg"],
-    portrait: ["P1.jpg", "P2.jpg", "P3.jpg", "P4.jpg"],
-    wedding: ["W1.jpg", "W2.jpg", "W3.jpg", "W4.jpg"]
+    commercial: [
+        'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&w=500&q=80',
+        'https://images.unsplash.com/photo-1586880244406-556ebe35f282?ixlib=rb-4.0.3&w=500&q=80',
+        'https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&w=500&q=80'
+    ],
+    concert: [
+        'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&w=500&q=80',
+        'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?ixlib=rb-4.0.3&w=500&q=80',
+        'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-4.0.3&w=500&q=80',
+        'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?ixlib=rb-4.0.3&w=500&q=80',
+        'https://images.unsplash.com/photo-1571330735066-03aaa9429d89?ixlib=rb-4.0.3&w=500&q=80',
+        'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&w=500&q=80'
+    ],
+    nature: [
+        'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&w=500&q=80',
+        'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?ixlib=rb-4.0.3&w=500&q=80',
+        'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&w=500&q=80'
+    ],
+    portrait: [
+        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&w=500&q=80',
+        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&w=500&q=80',
+        'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&w=500&q=80',
+        'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&w=500&q=80'
+    ],
+    wedding: [
+        'https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&w=500&q=80',
+        'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?ixlib=rb-4.0.3&w=500&q=80',
+        'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&w=500&q=80',
+        'https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&w=500&q=80'
+    ]
 };
 
 const imageMetadata = {
@@ -74,16 +99,7 @@ const elements = {
 class ThemeManager {
     constructor() {
         this.theme = this.getStoredTheme() || this.getPreferredTheme();
-        this.
-// ==========================================================================
-// Safe DOM Ready Hook for Initialization
-// ==========================================================================
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-} else {
-    init();
-}
-
+        this.init();
     }
 
     init() {
@@ -174,9 +190,10 @@ class LoadingManager {
             this.handlePageLoad();
         });
 
-        // Fallback timeout
+        // Fallback timeout to ensure loader hides
         setTimeout(() => {
             if (!this.isLoaded) {
+                console.log('Fallback: Hiding loader after timeout');
                 this.hideLoader();
             }
         }, 5000);
@@ -212,31 +229,15 @@ class LoadingManager {
         if (this.isLoaded) return;
         this.isLoaded = true;
 
+        console.log('Hiding loader and starting animations');
+
         if (elements.loader) {
             elements.loader.classList.add('hidden');
 
             // Start animations after loading
             setTimeout(() => {
-                animationManager.
-// ==========================================================================
-// Safe DOM Ready Hook for Initialization
-// ==========================================================================
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-} else {
-    init();
-}
-
-                statsCounter.
-// ==========================================================================
-// Safe DOM Ready Hook for Initialization
-// ==========================================================================
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-} else {
-    init();
-}
-
+                animationManager.init();
+                statsCounter.init();
 
                 // Remove loader from DOM after transition
                 setTimeout(() => {
@@ -258,16 +259,7 @@ class NavigationManager {
         this.isMenuOpen = false;
         this.lastScrollY = 0;
         this.scrollThreshold = 10;
-        this.
-// ==========================================================================
-// Safe DOM Ready Hook for Initialization
-// ==========================================================================
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-} else {
-    init();
-}
-
+        this.init();
     }
 
     init() {
@@ -340,11 +332,6 @@ if (document.readyState === 'loading') {
         // Prevent body scroll when menu is open
         document.body.style.overflow = this.isMenuOpen ? 'hidden' : '';
 
-        // Focus management
-        if (this.isMenuOpen) {
-            this.trapFocus();
-        }
-
         // Haptic feedback
         if ('vibrate' in navigator) {
             navigator.vibrate(30);
@@ -359,44 +346,6 @@ if (document.readyState === 'loading') {
         elements.navMenu.classList.remove('active');
         elements.navToggle.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
-    }
-
-    trapFocus() {
-        const focusableElements = elements.navMenu.querySelectorAll(
-            'a[href], button, [tabindex]:not([tabindex="-1"])'
-        );
-
-        if (focusableElements.length === 0) return;
-
-        const firstElement = focusableElements[0];
-        const lastElement = focusableElements[focusableElements.length - 1];
-
-        firstElement.focus();
-
-        const handleTabKey = (e) => {
-            if (e.key === 'Tab') {
-                if (e.shiftKey) {
-                    if (document.activeElement === firstElement) {
-                        e.preventDefault();
-                        lastElement.focus();
-                    }
-                } else {
-                    if (document.activeElement === lastElement) {
-                        e.preventDefault();
-                        firstElement.focus();
-                    }
-                }
-            }
-        };
-
-        document.addEventListener('keydown', handleTabKey);
-
-        // Clean up when menu closes
-        const cleanup = () => {
-            document.removeEventListener('keydown', handleTabKey);
-        };
-
-        setTimeout(cleanup, 100);
     }
 
     handleNavLinkClick(e, link) {
@@ -511,43 +460,6 @@ if (document.readyState === 'loading') {
                 }
             }, 100);
         }
-    }
-
-    polyfillSmoothScroll() {
-        // Simple smooth scroll polyfill
-        const scrollTo = (element, to, duration) => {
-            const start = element.scrollTop;
-            const change = to - start;
-            const startDate = +new Date();
-
-            const easeInOutQuad = (t, b, c, d) => {
-                t /= d / 2;
-                if (t < 1) return c / 2 * t * t + b;
-                t--;
-                return -c / 2 * (t * (t - 2) - 1) + b;
-            };
-
-            const animateScroll = () => {
-                const currentDate = +new Date();
-                const currentTime = currentDate - startDate;
-                element.scrollTop = parseInt(easeInOutQuad(currentTime, start, change, duration));
-                if (currentTime < duration) {
-                    requestAnimationFrame(animateScroll);
-                } else {
-                    element.scrollTop = to;
-                }
-            };
-
-            animateScroll();
-        };
-
-        window.scrollTo = (options) => {
-            if (typeof options === 'object' && options.behavior === 'smooth') {
-                scrollTo(document.documentElement, options.top, 500);
-            } else {
-                Element.prototype.scrollTo.apply(window, arguments);
-            }
-        };
     }
 }
 
@@ -686,12 +598,6 @@ class AnimationManager {
             element.style.transform = `translate3d(0, ${rate}px, 0)`;
         });
     }
-
-    cleanup() {
-        this.observers.forEach(observer => observer.disconnect());
-        this.observers.clear();
-        this.animatedElements.clear();
-    }
 }
 
 // ==========================================================================
@@ -701,7 +607,6 @@ class AnimationManager {
 class GalleryManager {
     constructor() {
         this.currentFilter = 'all';
-        this.lazyLoadOffset = 100;
         this.touchStartX = 0;
         this.touchStartY = 0;
         this.isSwipeEnabled = window.innerWidth <= 768;
@@ -710,7 +615,6 @@ class GalleryManager {
     init() {
         this.loadGalleryImages('all');
         this.bindEvents();
-        this.setupLazyLoading();
         this.setupTouchGestures();
     }
 
@@ -732,6 +636,11 @@ class GalleryManager {
 
         // Modal controls
         this.bindModalEvents();
+    }
+
+    bindModalEvents() {
+        // These will be handled by ModalManager
+        // Just ensuring gallery integration works
     }
 
     handleFilterClick(btn) {
@@ -781,12 +690,12 @@ class GalleryManager {
         if (filter === 'all') {
             Object.keys(imageFiles).forEach(category => {
                 if (imageFiles[category] && imageFiles[category].length > 0) {
-                    imageFiles[category].forEach(filename => {
+                    imageFiles[category].forEach((src, index) => {
                         imagesToShow.push({
-                            src: `src/${category}/${filename}`,
-                            filename: filename,
+                            src: src,
+                            filename: `${category}_${index + 1}`,
                             category: category,
-                            title: this.generateImageTitle(filename, category),
+                            title: this.generateImageTitle(`${category}_${index + 1}`, category),
                             description: imageMetadata[category]?.description || `${category} photography`
                         });
                     });
@@ -794,11 +703,11 @@ class GalleryManager {
             });
         } else {
             if (imageFiles[filter] && imageFiles[filter].length > 0) {
-                imagesToShow = imageFiles[filter].map(filename => ({
-                    src: `src/${filter}/${filename}`,
-                    filename: filename,
+                imagesToShow = imageFiles[filter].map((src, index) => ({
+                    src: src,
+                    filename: `${filter}_${index + 1}`,
                     category: filter,
-                    title: this.generateImageTitle(filename, filter),
+                    title: this.generateImageTitle(`${filter}_${index + 1}`, filter),
                     description: imageMetadata[filter]?.description || `${filter} photography`
                 }));
             }
@@ -834,9 +743,8 @@ class GalleryManager {
         galleryItem.innerHTML = `
             <div class="gallery-image" role="button" tabindex="0" aria-label="Open ${image.title}">
                 <img
-                    data-src="${image.src}"
+                    src="${image.src}"
                     alt="${image.title}"
-                    class="lazy-load"
                     loading="lazy">
                 <div class="gallery-overlay">
                     <div class="gallery-content">
@@ -875,40 +783,6 @@ class GalleryManager {
         });
 
         return galleryItem;
-    }
-
-    setupLazyLoading() {
-        const lazyImageObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src;
-                    img.classList.remove('lazy-load');
-                    lazyImageObserver.unobserve(img);
-
-                    // Add load event for fade-in effect
-                    img.addEventListener('load', () => {
-                        img.style.opacity = '1';
-                    });
-                }
-            });
-        }, {
-            rootMargin: `${this.lazyLoadOffset}px`
-        });
-
-        // Observe lazy images
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach(mutation => {
-                mutation.addedNodes.forEach(node => {
-                    if (node.nodeType === 1) {
-                        const lazyImages = node.querySelectorAll('.lazy-load');
-                        lazyImages.forEach(img => lazyImageObserver.observe(img));
-                    }
-                });
-            });
-        });
-
-        observer.observe(elements.galleryGrid, { childList: true, subtree: true });
     }
 
     setupTouchGestures() {
@@ -971,9 +845,6 @@ class GalleryManager {
                 <i class="fas fa-camera" style="font-size: 3rem; margin-bottom: 1rem; color: var(--primary-color);" aria-hidden="true"></i>
                 <h3 style="margin-bottom: 1rem;">No images found</h3>
                 <p>No images found for ${filter === 'all' ? 'any category' : filter + ' category'}.</p>
-                <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
-                    Add image filenames to the <code>imageFiles.${filter}</code> array in script.js
-                </p>
             </div>
         `;
     }
@@ -1087,12 +958,6 @@ class ModalManager {
         }
 
         document.body.style.overflow = '';
-
-        // Return focus to the gallery item that opened the modal
-        const activeGalleryItem = elements.galleryGrid.querySelector(`[data-index="${currentGalleryImage}"]`);
-        if (activeGalleryItem) {
-            activeGalleryItem.focus();
-        }
     }
 
     navigateGallery(direction) {
@@ -1136,7 +1001,7 @@ class ModalManager {
 }
 
 // ==========================================================================
-// Enhanced Statistics Counter with Intersection Observer
+// Enhanced Statistics Counter
 // ==========================================================================
 
 class StatsCounter {
@@ -1557,403 +1422,6 @@ class ContactFormManager {
 }
 
 // ==========================================================================
-// Performance Monitor and Utilities
-// ==========================================================================
-
-class PerformanceMonitor {
-    constructor() {
-        this.metrics = {};
-    }
-
-    init() {
-        this.measurePageLoad();
-        this.setupResourceHints();
-        this.optimizeScrolling();
-        this.setupIntersectionObservers();
-    }
-
-    measurePageLoad() {
-        window.addEventListener('load', () => {
-            if ('performance' in window) {
-                const navigation = performance.getEntriesByType('navigation')[0];
-
-                this.metrics = {
-                    loadTime: navigation.loadEventEnd - navigation.loadEventStart,
-                    domContentLoaded: navigation.domContentLoadedEventEnd - navigation.domContentLoadedEventStart,
-                    firstPaint: this.getFirstPaint(),
-                    firstContentfulPaint: this.getFirstContentfulPaint()
-                };
-
-                console.log('📊 Performance Metrics:', this.metrics);
-            }
-        });
-    }
-
-    getFirstPaint() {
-        const fpEntry = performance.getEntriesByName('first-paint')[0];
-        return fpEntry ? fpEntry.startTime : null;
-    }
-
-    getFirstContentfulPaint() {
-        const fcpEntry = performance.getEntriesByName('first-contentful-paint')[0];
-        return fcpEntry ? fcpEntry.startTime : null;
-    }
-
-    setupResourceHints() {
-        // Preload critical images that will be needed soon
-        const criticalImages = [
-            'src/508387584_18466633672077081_3643676971789401956_n.jpg'
-        ];
-
-        criticalImages.forEach(src => {
-            const link = document.createElement('link');
-            link.rel = 'preload';
-            link.as = 'image';
-            link.href = src;
-            document.head.appendChild(link);
-        });
-    }
-
-    optimizeScrolling() {
-        // Use passive listeners for scroll events
-        let ticking = false;
-
-        const optimizedScrollHandler = () => {
-            if (!ticking) {
-                requestAnimationFrame(() => {
-                    // Scroll handling code here
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        };
-
-        window.addEventListener('scroll', optimizedScrollHandler, { passive: true });
-    }
-
-    setupIntersectionObservers() {
-        // Configure intersection observers for optimal performance
-        const observerConfig = {
-            rootMargin: '50px',
-            threshold: [0.1, 0.25, 0.5, 0.75, 1.0]
-        };
-
-        // Use a single observer for multiple elements when possible
-        const generalObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Handle intersection
-                    entry.target.classList.add('in-viewport');
-                }
-            });
-        }, observerConfig);
-
-        // Observe elements that need viewport detection
-        document.querySelectorAll('[data-observe]').forEach(el => {
-            generalObserver.observe(el);
-        });
-    }
-}
-
-// ==========================================================================
-// Accessibility Manager
-// ==========================================================================
-
-class AccessibilityManager {
-    constructor() {
-        this.focusableSelectors = [
-            'a[href]',
-            'button:not([disabled])',
-            'input:not([disabled])',
-            'select:not([disabled])',
-            'textarea:not([disabled])',
-            '[tabindex]:not([tabindex="-1"])'
-        ].join(', ');
-    }
-
-    init() {
-        this.setupKeyboardNavigation();
-        this.setupFocusManagement();
-        this.setupARIAUpdates();
-        this.setupReducedMotion();
-        this.announcePageChanges();
-    }
-
-    setupKeyboardNavigation() {
-        // Skip to main content link
-        this.createSkipLink();
-
-        // Escape key handling
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                this.handleEscapeKey();
-            }
-        });
-
-        // Focus visible indicators
-        document.addEventListener('focusin', (e) => {
-            if (e.target.matches(this.focusableSelectors)) {
-                e.target.classList.add('focus-visible');
-            }
-        });
-
-        document.addEventListener('focusout', (e) => {
-            e.target.classList.remove('focus-visible');
-        });
-    }
-
-    createSkipLink() {
-        const skipLink = document.createElement('a');
-        skipLink.href = '#main';
-        skipLink.textContent = 'Skip to main content';
-        skipLink.className = 'skip-link';
-        skipLink.style.cssText = `
-            position: absolute;
-            top: -40px;
-            left: 6px;
-            background: var(--primary-color);
-            color: white;
-            padding: 8px;
-            text-decoration: none;
-            z-index: 100;
-            border-radius: 4px;
-            transition: top 0.3s;
-        `;
-
-        skipLink.addEventListener('focus', () => {
-            skipLink.style.top = '6px';
-        });
-
-        skipLink.addEventListener('blur', () => {
-            skipLink.style.top = '-40px';
-        });
-
-        document.body.insertBefore(skipLink, document.body.firstChild);
-    }
-
-    setupFocusManagement() {
-        // Focus trap for modals
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab' && modalManager.isOpen) {
-                this.trapFocus(e, elements.imageModal);
-            }
-        });
-    }
-
-    trapFocus(event, container) {
-        const focusableElements = container.querySelectorAll(this.focusableSelectors);
-        const firstElement = focusableElements[0];
-        const lastElement = focusableElements[focusableElements.length - 1];
-
-        if (event.shiftKey) {
-            if (document.activeElement === firstElement) {
-                event.preventDefault();
-                lastElement.focus();
-            }
-        } else {
-            if (document.activeElement === lastElement) {
-                event.preventDefault();
-                firstElement.focus();
-            }
-        }
-    }
-
-    setupARIAUpdates() {
-        // Live region for dynamic content
-        const liveRegion = document.createElement('div');
-        liveRegion.setAttribute('aria-live', 'polite');
-        liveRegion.setAttribute('aria-atomic', 'true');
-        liveRegion.className = 'sr-only';
-        liveRegion.id = 'live-region';
-        document.body.appendChild(liveRegion);
-    }
-
-    announcePageChanges() {
-        // Announce page changes to screen readers
-        const announceChange = (message) => {
-            const liveRegion = document.getElementById('live-region');
-            if (liveRegion) {
-                liveRegion.textContent = message;
-                setTimeout(() => {
-                    liveRegion.textContent = '';
-                }, 1000);
-            }
-        };
-
-        // Example: Announce filter changes
-        elements.filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const filter = btn.textContent;
-                announceChange(`Gallery filtered to show ${filter} images`);
-            });
-        });
-    }
-
-    setupReducedMotion() {
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-        if (prefersReducedMotion.matches) {
-            document.documentElement.style.setProperty('--transition-fast', '0ms');
-            document.documentElement.style.setProperty('--transition-normal', '0ms');
-            document.documentElement.style.setProperty('--transition-slow', '0ms');
-        }
-
-        prefersReducedMotion.addEventListener('change', (e) => {
-            const duration = e.matches ? '0ms' : '';
-            document.documentElement.style.setProperty('--transition-fast', duration || '150ms');
-            document.documentElement.style.setProperty('--transition-normal', duration || '300ms');
-            document.documentElement.style.setProperty('--transition-slow', duration || '500ms');
-        });
-    }
-
-    handleEscapeKey() {
-        // Close any open modals or menus
-        if (modalManager.isOpen) {
-            modalManager.closeModal();
-        } else if (navigationManager.isMenuOpen) {
-            navigationManager.closeMobileMenu();
-        }
-    }
-}
-
-// ==========================================================================
-// Mobile Optimizations Manager
-// ==========================================================================
-
-class MobileOptimizations {
-    constructor() {
-        this.isMobile = window.innerWidth <= 768;
-        this.isTouch = 'ontouchstart' in window;
-    }
-
-    init() {
-        this.setupViewportOptimizations();
-        this.setupTouchOptimizations();
-        this.setupOrientationChanges();
-        this.setupHapticFeedback();
-        this.optimizeForMobile();
-    }
-
-    setupViewportOptimizations() {
-        // Dynamic viewport height for mobile browsers
-        const setViewportHeight = () => {
-            const vh = window.innerHeight * 0.01;
-            document.documentElement.style.setProperty('--vh', `${vh}px`);
-        };
-
-        setViewportHeight();
-        window.addEventListener('resize', setViewportHeight);
-        window.addEventListener('orientationchange', () => {
-            setTimeout(setViewportHeight, 100);
-        });
-    }
-
-    setupTouchOptimizations() {
-        if (!this.isTouch) return;
-
-        // Improve touch responsiveness
-        document.addEventListener('touchstart', () => {}, { passive: true });
-
-        // Prevent zoom on double tap for specific elements
-        const preventZoomElements = document.querySelectorAll('button, .btn, .nav-link');
-        preventZoomElements.forEach(el => {
-            el.addEventListener('touchend', (e) => {
-                e.preventDefault();
-                e.target.click();
-            }, { passive: false });
-        });
-
-        // Optimize scroll performance
-        const scrollElements = document.querySelectorAll('.gallery-grid, .testimonials-slider');
-        scrollElements.forEach(el => {
-            el.style.webkitOverflowScrolling = 'touch';
-        });
-    }
-
-    setupOrientationChanges() {
-        window.addEventListener('orientationchange', () => {
-            // Recalculate layouts on orientation change
-            setTimeout(() => {
-                this.recalculateLayouts();
-            }, 100);
-        });
-    }
-
-    setupHapticFeedback() {
-        if (!('vibrate' in navigator)) return;
-
-        // Add haptic feedback to interactive elements
-        const interactiveElements = document.querySelectorAll('button, .btn, .nav-link, .gallery-btn');
-        interactiveElements.forEach(el => {
-            el.addEventListener('click', () => {
-                navigator.vibrate(30);
-            });
-        });
-    }
-
-    optimizeForMobile() {
-        if (!this.isMobile) return;
-
-        // Optimize images for mobile
-        this.optimizeImages();
-
-        // Reduce animation complexity on mobile
-        this.simplifyAnimations();
-
-        // Optimize font loading
-        this.optimizeFonts();
-    }
-
-    optimizeImages() {
-        const images = document.querySelectorAll('img');
-        images.forEach(img => {
-            // Add loading="lazy" if not already present
-            if (!img.hasAttribute('loading')) {
-                img.setAttribute('loading', 'lazy');
-            }
-
-            // Add mobile-specific optimizations
-            img.style.maxWidth = '100%';
-            img.style.height = 'auto';
-        });
-    }
-
-    simplifyAnimations() {
-        // Reduce motion on mobile for better performance
-        const style = document.createElement('style');
-        style.textContent = `
-            @media (max-width: 768px) {
-                * {
-                    animation-duration: 0.3s !important;
-                    transition-duration: 0.3s !important;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-    }
-
-    optimizeFonts() {
-        // Optimize font display for mobile
-        const fontLinks = document.querySelectorAll('link[href*="fonts.googleapis.com"]');
-        fontLinks.forEach(link => {
-            link.setAttribute('rel', 'preload');
-            link.setAttribute('as', 'style');
-            link.setAttribute('onload', "this.onload=null;this.rel='stylesheet'");
-        });
-    }
-
-    recalculateLayouts() {
-        // Force recalculation of layouts after orientation change
-        const elements = document.querySelectorAll('.gallery-grid, .services-grid, .hero-content');
-        elements.forEach(el => {
-            el.style.display = 'none';
-            el.offsetHeight; // Trigger reflow
-            el.style.display = '';
-        });
-    }
-}
-
-// ==========================================================================
 // Application Initialization and Manager Instances
 // ==========================================================================
 
@@ -1967,30 +1435,20 @@ let modalManager;
 let statsCounter;
 let testimonialsManager;
 let contactFormManager;
-let performanceMonitor;
-let accessibilityManager;
-let mobileOptimizations;
 
 // ==========================================================================
 // Enhanced Application Initialization
 // ==========================================================================
 
 function initializeApplication() {
-    // Check if DOM is ready
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initializeApplication);
-        return;
-    }
+    console.log('🚀 Initializing Ankho Photography Portfolio...');
 
     try {
-        console.log('🚀 Initializing Ankho Photography Portfolio...');
-
         // Initialize core systems first
         themeManager = new ThemeManager();
         loadingManager = new LoadingManager();
-        performanceMonitor = new PerformanceMonitor();
 
-        // Initialize UI managers
+        // Initialize UI managers (these will be activated after loading)
         navigationManager = new NavigationManager();
         animationManager = new AnimationManager();
         galleryManager = new GalleryManager();
@@ -1999,300 +1457,37 @@ function initializeApplication() {
         testimonialsManager = new TestimonialsManager();
         contactFormManager = new ContactFormManager();
 
-        // Initialize accessibility and mobile optimizations
-        accessibilityManager = new AccessibilityManager();
-        mobileOptimizations = new MobileOptimizations();
-
-        // Initialize all systems
-        loadingManager.
-// ==========================================================================
-// Safe DOM Ready Hook for Initialization
-// ==========================================================================
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-} else {
-    init();
-}
-
-        performanceMonitor.
-// ==========================================================================
-// Safe DOM Ready Hook for Initialization
-// ==========================================================================
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-} else {
-    init();
-}
-
-        accessibilityManager.
-// ==========================================================================
-// Safe DOM Ready Hook for Initialization
-// ==========================================================================
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-} else {
-    init();
-}
-
-        mobileOptimizations.
-// ==========================================================================
-// Safe DOM Ready Hook for Initialization
-// ==========================================================================
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-} else {
-    init();
-}
-
-        galleryManager.
-// ==========================================================================
-// Safe DOM Ready Hook for Initialization
-// ==========================================================================
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-} else {
-    init();
-}
-
-        testimonialsManager.
-// ==========================================================================
-// Safe DOM Ready Hook for Initialization
-// ==========================================================================
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-} else {
-    init();
-}
-
-        contactFormManager.
-// ==========================================================================
-// Safe DOM Ready Hook for Initialization
-// ==========================================================================
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-} else {
-    init();
-}
-
-
-        // Setup scroll to top button
-        setupScrollToTop();
-
-        // Setup error handling
-        setupErrorHandling();
-
-        // Setup service worker for offline support
-        setupServiceWorker();
+        // Initialize managers that should start immediately
+        loadingManager.init();
+        galleryManager.init();
+        testimonialsManager.init();
+        contactFormManager.init();
 
         console.log('✅ Portfolio initialized successfully!');
         console.log('🎨 Dark mode available via toggle button');
         console.log('📱 Mobile optimizations active');
-        console.log('♿ Accessibility features enabled');
 
     } catch (error) {
         console.error('❌ Error initializing portfolio:', error);
 
-        // Graceful fallback
+        // Graceful fallback - hide loader immediately
         if (elements.loader) {
             elements.loader.classList.add('hidden');
-        }
-    }
-}
-
-// ==========================================================================
-// Additional Utility Functions
-// ==========================================================================
-
-function setupScrollToTop() {
-    // Create scroll to top button
-    const scrollTopBtn = document.createElement('button');
-    scrollTopBtn.innerHTML = '<i class="fas fa-chevron-up" aria-hidden="true"></i>';
-    scrollTopBtn.className = 'scroll-top-btn';
-    scrollTopBtn.setAttribute('aria-label', 'Scroll to top');
-    scrollTopBtn.style.cssText = `
-        position: fixed;
-        bottom: 2rem;
-        right: 2rem;
-        width: 50px;
-        height: 50px;
-        background: var(--gradient-primary);
-        color: var(--text-white);
-        border: none;
-        border-radius: 50%;
-        font-size: 1.2rem;
-        cursor: pointer;
-        z-index: var(--z-fixed);
-        opacity: 0;
-        transform: translateY(20px);
-        transition: all var(--transition-normal);
-        box-shadow: var(--shadow-gold);
-    `;
-
-    document.body.appendChild(scrollTopBtn);
-
-    // Show/hide scroll to top button
-    let isVisible = false;
-    window.addEventListener('scroll', () => {
-        const shouldShow = window.scrollY > 500;
-
-        if (shouldShow && !isVisible) {
-            scrollTopBtn.style.opacity = '1';
-            scrollTopBtn.style.transform = 'translateY(0)';
-            isVisible = true;
-        } else if (!shouldShow && isVisible) {
-            scrollTopBtn.style.opacity = '0';
-            scrollTopBtn.style.transform = 'translateY(20px)';
-            isVisible = false;
-        }
-    }, { passive: true });
-
-    // Scroll to top functionality
-    scrollTopBtn.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-
-        // Haptic feedback
-        if ('vibrate' in navigator) {
-            navigator.vibrate(50);
-        }
-    });
-}
-
-function setupErrorHandling() {
-    // Global error handler
-    window.addEventListener('error', (e) => {
-        console.error('Global error:', e.error);
-
-        // Don't break the user experience
-        e.preventDefault();
-    });
-
-    // Unhandled promise rejection handler
-    window.addEventListener('unhandledrejection', (e) => {
-        console.error('Unhandled promise rejection:', e.reason);
-
-        // Don't break the user experience
-        e.preventDefault();
-    });
-}
-
-function setupServiceWorker() {
-    // Register service worker for offline support
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/sw.js')
-                .then(registration => {
-                    console.log('💾 Service Worker registered:', registration);
-                })
-                .catch(error => {
-                    console.log('Service Worker registration failed:', error);
-                });
-        });
-    }
-}
-
-// ==========================================================================
-// Enhanced Utility Functions
-// ==========================================================================
-
-function throttle(func, limit) {
-    let inThrottle;
-    return function(...args) {
-        if (!inThrottle) {
-            func.apply(this, args);
-            inThrottle = true;
             setTimeout(() => {
-                inThrottle = false;
-            }, limit);
+                if (elements.loader && elements.loader.parentNode) {
+                    elements.loader.parentNode.removeChild(elements.loader);
+                }
+            }, 500);
         }
-    };
-}
-
-function debounce(func, delay) {
-    let timeoutId;
-    return function(...args) {
-        clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => func.apply(this, args), delay);
-    };
-}
-
-function preloadImage(src) {
-    return new Promise((resolve, reject) => {
-        const img = new Image();
-        img.onload = resolve;
-        img.onerror = reject;
-        img.src = src;
-    });
-}
-
-function isElementInViewport(el) {
-    const rect = el.getBoundingClientRect();
-    return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
+    }
 }
 
 // ==========================================================================
-// Developer Helpers and Console Messages
+// Safe DOM Ready Hook for Initialization
 // ==========================================================================
 
-function showDeveloperHelpers() {
-    const helpers = `
-🎨 Ankho Photography - Enhanced Portfolio
-========================================
-
-🔧 Available Commands:
-• themeManager.toggleTheme() - Toggle dark/light mode
-• galleryManager.loadGalleryImages('category') - Load specific category
-• modalManager.openModal() - Open image modal
-• performanceMonitor.metrics - View performance data
-
-📱 Mobile Features:
-• Touch gestures for gallery navigation
-• Haptic feedback on supported devices
-• Responsive breakpoints and fluid typography
-• Enhanced accessibility features
-
-🎬 Animation Features:
-• Scroll-triggered animations with Intersection Observer
-• Typing effects for text elements
-• Staggered animations for grouped elements
-• Parallax effects on desktop
-
-♿ Accessibility Features:
-• Screen reader support with ARIA labels
-• Keyboard navigation throughout
-• Focus management and skip links
-• Reduced motion preferences support
-
-🌙 Dark Mode:
-• System preference detection
-• Smooth theme transitions
-• Persistent user preference storage
-
-📊 Performance:
-• Lazy loading for images
-• Optimized scroll listeners
-• Efficient animation handling
-• Resource preloading
-
-Categories: ${Object.keys(imageFiles).join(', ')}
-    `;
-
-    console.log(helpers);
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeApplication);
+} else {
+    initializeApplication();
 }
-
-// ==========================================================================
-// Start the Enhanced Application
-// ==========================================================================
-
-// Initialize the application
-initializeApplication();
-
-// Show developer helpers in console
-setTimeout(showDeveloperHelpers, 1000);
