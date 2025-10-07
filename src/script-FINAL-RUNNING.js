@@ -11,7 +11,6 @@ let ticking = false;
 let touchStartY = 0;
 
 // Enhanced Image Configuration with sample images
-const imageFiles = {
   const imageFiles = {
     commercial: ["A.jpg", "B.jpg", "C.jpg"],
     concert: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg"],
