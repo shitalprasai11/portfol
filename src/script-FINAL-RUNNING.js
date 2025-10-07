@@ -12,36 +12,12 @@ let touchStartY = 0;
 
 // Enhanced Image Configuration with sample images
 const imageFiles = {
-    commercial: [
-        'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&w=500&q=80',
-        'https://images.unsplash.com/photo-1586880244406-556ebe35f282?ixlib=rb-4.0.3&w=500&q=80',
-        'https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&w=500&q=80'
-    ],
-    concert: [
-        'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&w=500&q=80',
-        'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?ixlib=rb-4.0.3&w=500&q=80',
-        'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-4.0.3&w=500&q=80',
-        'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?ixlib=rb-4.0.3&w=500&q=80',
-        'https://images.unsplash.com/photo-1571330735066-03aaa9429d89?ixlib=rb-4.0.3&w=500&q=80',
-        'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&w=500&q=80'
-    ],
-    nature: [
-        'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&w=500&q=80',
-        'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?ixlib=rb-4.0.3&w=500&q=80',
-        'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&w=500&q=80'
-    ],
-    portrait: [
-        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&w=500&q=80',
-        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&w=500&q=80',
-        'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&w=500&q=80',
-        'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&w=500&q=80'
-    ],
-    wedding: [
-        'https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&w=500&q=80',
-        'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?ixlib=rb-4.0.3&w=500&q=80',
-        'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&w=500&q=80',
-        'https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&w=500&q=80'
-    ]
+  const imageFiles = {
+    commercial: ["A.jpg", "B.jpg", "C.jpg"],
+    concert: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg"],
+    nature: ["N1.jpg", "N2.jpg", "N3.jpg"],
+    portrait: ["P1.jpg", "P2.jpg", "P3.jpg", "P4.jpg"],
+    wedding: ["W1.jpg", "W2.jpg", "W3.jpg", "W4.jpg"]
 };
 
 const imageMetadata = {
